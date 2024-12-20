@@ -47,7 +47,8 @@ def get_palette():
             "content": "[\"#009246\", \"#FFFFFF\", \"#CE2B37\"]"
         }
     ]
-    prompt = request.form.get("prompt")
+    data = request.get_json()
+    prompt = data.get("prompt")
     messages.append({
         "role": "user",
         "content": prompt
