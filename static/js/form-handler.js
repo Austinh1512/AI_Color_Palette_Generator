@@ -1,4 +1,5 @@
 form = document.querySelector("#getPromptForm");
+container = document.querySelector(".container")
 
 form.addEventListener("submit", async e => {
     e.preventDefault();
@@ -13,4 +14,21 @@ form.addEventListener("submit", async e => {
         }
     );
     const { colors } = await response.json();
+    container.innerHTML = "";
+
+    colors.forEach(color => {
+        const div = document.createElement("div");
+        div.style.backgroundColor = color;
+        div.classList.add("color");
+
+        const span = document.createElement("span");
+        span.innerText = color;
+        div.appendChild(span)
+
+        div.addEventListener("click", () => {
+            navigator.clipboard.writeText(color)
+        })
+
+        container.appendChild(div);
+    })
 })
